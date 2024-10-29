@@ -30,7 +30,7 @@ To run a Lua script with arguments, use the following command:
 
 `wscript <path to Fu.vbs> <path to Lua script> [script arguments]`
 
-To bind commands to a hotkey, you can use any macro software you please. An example using [AutoHotkey](https://www.autohotkey.com/) can be found in [RunScript.ahk](RunScript.ahk).
+To bind commands to a hotkey, you can use any macro software you please. An example using [AutoHotkey](https://www.autohotkey.com/) v1.1 can be found in [RunScript.ahk](RunScript.ahk).
 
 ### Accessing Arguments in Lua
 Arguments are available through the global `arg` table:

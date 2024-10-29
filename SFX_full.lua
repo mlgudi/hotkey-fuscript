@@ -29,6 +29,14 @@ local CONFIG = {
     FALLBACK_TO_HIGHEST_TRACK = false, -- If the specified track exceeds the track count, use the highest available instead of DEFAULT_TRACK
 }
 
+local function shallow_copy(t)
+    local t2 = {}
+    for k, v in pairs(t) do
+        t2[k] = v
+    end
+    return t2
+end
+
 local function hash_path(path)
     local hash = #path
     for i, str in ipairs(path) do
@@ -64,7 +72,12 @@ local function find_clip(media_pool, name, path)
 end
 
 local function map_folder(folder, path, is_root, sfx_map)
-    local current_path = is_root and {} or {table.unpack(path), folder:GetName()}
+    local current_path = {}
+    if not is_root then
+        current_path = shallow_copy(path)
+        table.insert(current_path, folder:GetName())
+    end
+
     local path_hash = hash_path(current_path)
 
     for _, item in ipairs(folder:GetClipList()) do
